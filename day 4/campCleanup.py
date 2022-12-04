@@ -22,16 +22,13 @@ def day4_partb():
         inp = input()
         if inp == "q":
             break
-        first, second = inp.split(",")
 
+        first, second = inp.split(",")
         first = getRange(first)
         second = getRange(second)
         
-        if first[1] < second[0] or second[1] < first[0]:
-            pass
-        else:
+        if not (first[1] < second[0] or second[1] < first[0]):
             pairs += 1
-        
     return pairs
 
 def getRange(interval):
