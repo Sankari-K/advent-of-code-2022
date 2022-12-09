@@ -1,13 +1,10 @@
-def day2_parta():
+def day2_parta(inp):
     score = 0
     weights = {"X": 1, "Y":2, "Z": 3}
     correspondance = {"X": "A", "Y":"B", "Z": "C"}
 
-    while True:
-        inp = input()
-        if inp == "q":
-            break
-        opp, me = inp.split()
+    for line in inp:
+        opp, me = line
         score += weights[me]
         if correspondance[me] == opp:
             score += 3 # draw
@@ -22,13 +19,10 @@ def day2_parta():
                 score += 6
     return score
 
-def day2_partb():
+def day2_partb(inp):
     score = 0
-    while True:
-        inp = input()
-        if inp == "q":
-            break
-        opp, result = inp.split()
+    for line in inp:
+        opp, result = line
         results = {"X": 0, "Y": 3, "Z": 6}
         signs = {"A": 1, "B": 2, "C": 3}
         score += results[result]
@@ -50,5 +44,15 @@ def day2_partb():
                 score += 1
     return score
 
+def parse():
+    res = []
+    inp = input()
+    while inp:
+        res.append(inp.split())
+        inp = input()
+    return res
 
-print(day2_partb())
+inp = parse()
+
+print(day2_parta(inp))
+print(day2_partb(inp))
