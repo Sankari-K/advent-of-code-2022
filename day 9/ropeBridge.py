@@ -35,18 +35,23 @@ def update_tail(first_part, second_part):
  
     return second_part
 
-def day9(knots):
+def parse():
+    instructions = []
+    inp = input()
+    while inp:
+        instructions.append(inp.split())
+        inp = input()
+    return instructions
+
+def day9(moves, knots):
     visited = set()
     visited.add((0, 0))
 
     # this list would contain positions of all parts of the rope
     POSITIONS = [[0,0] for _ in range(knots)]
 
-    while True:
-        inp = input()
-        if inp == "q":
-            break
-        direction, step = inp.split()
+    for move in moves:
+        direction, step = move
         step = int(step)
         for s in range(step):
             if direction == "R":
@@ -67,7 +72,8 @@ def day9(knots):
             visited.add(tuple(POSITIONS[-1]))
     return len(visited)
 
-print(day9(2))
-print(day9(10))
+moves = parse()
+print(day9(moves, 2))
+print(day9(moves, 10))
 
     
