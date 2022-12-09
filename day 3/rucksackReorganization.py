@@ -6,31 +6,35 @@ PRIORITY = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7,
     'N': 40, 'O': 41, 'P': 42, 'Q': 43, 'R': 44, 'S': 45, 'T': 46, 'U': 47, 
     'V': 48, 'W': 49, 'X': 50, 'Y': 51, 'Z': 52}
 
-def day3_parta():
+def day3_parta(rucksack):
     priorities = 0
-    while True:
-        inp = input()
-        if inp == "q":
-            break
+    for inp in rucksack:
         firstCompartment, secondCompartment = set(inp[:len(inp) // 2]), set(inp[len(inp) // 2:])
         (item,) = firstCompartment.intersection(secondCompartment)
         priorities += PRIORITY[item]
     return priorities
 
-def day3_partb():
+def day3_partb(rucksack):
     priorities = 0
-    while True:
-        first = input()
-        if not first:
-            break
-        second = input()
-        third = input()
+    for index in range(len(rucksack) // 3):
+        first = set(rucksack[3 * index])
+        second = set(rucksack[3 * index + 1])
+        third = set(rucksack[3 * index + 2])
 
-        first, second, third = set(first), set(second), set(third)
         item = first.intersection(second)
         (item, ) = item.intersection(third)
         priorities += PRIORITY[item]
     return priorities
 
+def parser():
+    rucksacks = []
+    inp = input()
+    while inp:
+        rucksacks.append(inp)
+        inp = input()
+    return rucksacks
 
-print(day3_partb())
+rucksack = parser()
+print(day3_parta(rucksack)) 
+print(day3_partb(rucksack)) 
+
