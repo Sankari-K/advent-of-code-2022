@@ -9,11 +9,9 @@ class Node(object):
 def parse():
     file = Node("/", None)
     current = file
-    while True:
-        inp = input()
+    inp = input()
 
-        if inp == "q":
-            break
+    while inp:
         inp = inp.split()
 
         if inp[0] == "$" and inp[1] == "cd":
@@ -30,6 +28,8 @@ def parse():
             new = Node(inp[1], current)
             new.weight = 0 if inp[0] == "dir" else int(inp[0])
             current.neighbours.append(new)
+        inp = input()
+
     return file
 
 def findSum(dir, ALL_DIRS):
@@ -49,8 +49,7 @@ def dfs(dir):
         res += dfs(neighbour)
     return res
 
-def day7_parta():
-    file = parse()
+def day7(file):
     ALL_DIRS = []
     findSum(file, ALL_DIRS)
 
@@ -62,7 +61,8 @@ def day7_parta():
     # return [ans_for_part_a, ans_for_part_b]
     return [dfs(file), ALL_DIRS[0]]
 
-print(day7_parta())
+file = parse()
+print(day7(file))
 
 
 
