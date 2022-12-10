@@ -1,2 +1,2 @@
-# Ignore all files named data.txt in any directory
+# Ignore all files named input.txt in any directory
 **/input.txt
