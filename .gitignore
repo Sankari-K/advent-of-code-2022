@@ -1,0 +1,2 @@
+# Ignore all files named data.txt in any directory
+**/input.txt
